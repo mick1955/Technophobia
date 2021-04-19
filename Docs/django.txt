@@ -1,0 +1,58 @@
+
+New
+
+cd ~/src
+pip3 install django
+
+django-admin startproject codehelp
+cd codehelp
+
+
+python3 manage.py startapp blog
+mkdir -p blog/templates/blog
+
+cat > blog/views.py <<EOF
+from django.shortcuts import render
+from django.http import HttpResponse
+
+def home(request):
+    return HttpResponse('<h1>Blog Home’)
+
+def about(request):
+    return HttpResponse('<h1>Blog About’)
+EOF
+
+cat > blog/urls.py <<EOF
+from django.urls import path
+from . import views
+
+urlpatterns = [
+    path('', views.home, name='blog-home'),
+]
+EOF
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+Templates
+
+
+touch blog/templates/blog/home.html
+touch blog/templates/blog/about.html
+
+

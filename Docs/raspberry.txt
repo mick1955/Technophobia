@@ -1,0 +1,14 @@
+
+https://smittytone.wordpress.com/2016/03/02/mac_remote_desktop_pi/
+
+
+sudo apt-get install tightvncserver
+
+Run tightvncserver
+
+$ tightvncserver
+
+[Enter new remote access password]
+
+Connect to Server (Cmd-K)
+vnc://rasp1:5901

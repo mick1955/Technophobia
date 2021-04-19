@@ -1,0 +1,16 @@
+
+- Create animated GIF:
+
+NOTE: Requires a set of images that sort correctly (00.png, 01.png, etc.)
+
+1. Run Photoshop CS5.
+
+	- Select Window -> Animation
+	- Select File -> Svcripts -> Load Files Into Stack ...
+	- In Load Layers, select Files -> Browse
+	- Navigate to correct folder and select all png files.
+	- Upper rt corder of animation window, 
+	- Select Create New Layer for Each New Frame
+	- Select Reverse Layers
+	- Select File -> Save for Web & Devices
+	
