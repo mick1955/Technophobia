@@ -1,19 +1,19 @@
-ï»¿ID,TOPIC,DESCRIPTION
+TOPIC_ID,TOPIC,DESCRIPTION
 1,Administration,"Management, maintenance, updates and control of servers, routers, clients and other network components."
-2,Apache,Apache is the most popular WebÂ server software. It enables a computer to host one or moreÂ websitesÂ that can be accessed over the Internet using aÂ Web browser. 
+2,Apache,Apache is the most popular WebÊserver software. It enables a computer to host one or moreÊwebsitesÊthat can be accessed over the Internet using aÊWeb browser. 
 3,Audio / Video,Music and Film Production using Logic Pro and Final Cut Pro.
 4,Automation,"Agentless management of installs, deployments and many other tasks that can be automated."
-5,Bash,A command language interpreter that executes commands entered at aÂ command prompt and process text fileÂ input.
+5,Bash,A command language interpreter that executes commands entered at aÊcommand prompt and process text fileÊinput.
 6,Blender,"open source 3D creation suite. It supports modeling, rigging, animation, simulation, rendering, compositing and motion tracking, video editing and a 2D animation pipeline."
-7,Cryptocurrency,"A digitalÂ record with each transaction linked together in single list called a chain.  Used by cryptocurrencies such asÂ Bitcoin, and many other applications."
-8,Bootstrap,"A CSS frameworkÂ directed at responsive,Â mobile-firstÂ front-end web development."
-9,C / C++ / Obj-C,A family of programming languages that derive syntax from the original.  C++ and Objective C are supersets of C.
-10,Codeigniter,"AnÂ open-source softwareÂ rapid developmentÂ web framework, mostly used for building dynamic web sites withÂ PHP."
+7,Cryptocurrency,"A digitalÊrecord with each transaction linked together in single list called a chain.  Used by cryptocurrencies such asÊBitcoin, and many other applications."
+8,Bootstrap,"A CSS frameworkÊdirected at responsive,Êmobile-firstÊfront-end web development."
+9,C/C++/Obj-C,A family of programming languages that derive syntax from the original.  C++ and Objective C are supersets of C.
+10,Codeigniter,"AnÊopen-source softwareÊrapid developmentÊweb framework, mostly used for building dynamic web sites withÊPHP."
 11,Command Line,A command-line interface (CLI) processes commands in the form of lines of text.
-12,C Preprocessor,"Macro preprocessorÂ for theÂ C,Â Objective-CÂ andÂ C++Â computerÂ programming languages, allowing header files,Â macroÂ expansions,Â conditional compilation, and line control."
-13,CSS,Cascading Style SheetsÂ (CSS) is aÂ style sheet languageÂ used for describing theÂ presentation of a document written in aÂ markup languageÂ such asÂ HTML.
-14,Cyber Tools,
-15,Dev Tools,
+12,C Preprocessor,"Macro preprocessorÊfor theÊC,ÊObjective-CÊandÊC++ÊcomputerÊprogramming languages, allowing header files,ÊmacroÊexpansions,Êconditional compilation, and line control."
+13,CSS,Cascading Style SheetsÊ(CSS) is aÊstyle sheet languageÊused for describing theÊpresentation of a document written in aÊmarkup languageÊsuch asÊHTML.
+14,Cyber Tools,"Tools for defensive and offensive cybersecurity, networking, systems, web technologies, and databases."
+15,Dev Tools,"Development tools such as linkers, compilers, code editors, GUI designers, IDEs , assemblers, debuggers, and other tools."
 16,Django,
 17,Editors,
 18,HTML,
