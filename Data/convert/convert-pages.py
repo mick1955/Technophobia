@@ -21,29 +21,30 @@ def main():
     try:
         with connect(
                 host="localhost",
-                user=input("Enter username: "),
-                password=getpass("Enter password: "),
+                user="root",
+                password=getpass("root"),
         ) as connection:
             print(connection)
     except Error as e:
         print(e)
 
-    loadfile(file)
+    # loadfile(file)
 
 
 def loadfile(file):
 
-    with open(file, newline='') as csv_file:
+    with open(file, newline='', encoding="ISO-8859-1") as csv_file:
         reader = csv.reader(csv_file)
         for row in reader:
 
-            topic_name = row[0]
-            topic_description = row[1]
+            topic_name = row[1]
+            topic_description = row[2]
 
             topic_name = topic_name.replace('"', '')
             topic_description = topic_description.replace('"', '')
 
-            print("INSERT INTO Topic VALUES (" + "NULL" + ", '" + topic_name + "', '" + topic_description + "');")
+            print(topic_name, topic_description)
+            # print("INSERT INTO Topic VALUES (" + "NULL" + ", '" + topic_name + "', '" + topic_description + "');")
 
             # section_id = section_id.replace('"', '')
             # item_id = item_id.replace('"', '')

@@ -1,7 +1,14 @@
-
-- Start by creating Numbers spreadsheet with appropriate columns. Remove header columns.
+ 
+- create Numbers spreadsheet with appropriate columns. Remove header columns.
 
 - Populate cells in spreadsheet with data - enter manually, or cut and paste.
+
+- Save as CSV file.
+
+
+
+
+
 
 - Test systems: mbpro1, mbpro2:
 
@@ -34,7 +41,11 @@ INSERT INTO Topic VALUES (NULL,'Administration','Management, maintenance, update
 
 
 
+$ sudo dnf install epel-release
 
+rpm -q epel-release
+
+sudo dnf install gcc make perl kernel-devel kernel-headers bzip2 dkms
 
 
 

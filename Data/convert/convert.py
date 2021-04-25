@@ -6,7 +6,7 @@ import csv
 def main():
 
     if len(sys.argv) != 3:
-        print("Uaage: csv_convert.py --file [filename]")
+        print("Usage: csv_convert.py --file [filename]")
         exit(-1)
 
     file = sys.argv[2]
