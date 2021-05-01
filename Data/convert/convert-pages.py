@@ -2,8 +2,29 @@
 import sys
 import csv
 
+import mysql.connector
+
 from getpass import getpass
-from mysql.connector import connect, Error
+
+def create_database(cursor):
+    try:
+        cursor.execute(
+            "CREATE DATABASE {} DEFAULT CHARACTER SET 'utf8'".format(DB_NAME))
+    except mysql.connector.Error as err:
+        print("Failed creating database: {}".format(err))
+        exit(1)
+
+try:
+    cursor.execute("USE {}".format(DB_NAME))
+except mysql.connector.Error as err:
+    print("Database {} does not exists.".format(DB_NAME))
+    if err.errno == errorcode.ER_BAD_DB_ERROR:
+        create_database(cursor)
+        print("Database {} created successfully.".format(DB_NAME))
+        cnx.database = DB_NAME
+    else:
+        print(err)
+        exit(1)
 
 
 def create_entry(header, body, buttons):
@@ -12,23 +33,29 @@ def create_entry(header, body, buttons):
 
 def main():
 
-    if len(sys.argv) != 3:
-        print("Usage: csv_convert.py --file [filename]")
-        exit(-1)
+    # if len(sys.argv) != 3:
+    #     print("Usage: csv_convert.py --file [filename]")
+    #     exit(-1)
 
-    file = sys.argv[2]
+    # file = sys.argv[2]
+    file = "/Users/moyer/Technophobia/Data/csv/contentlist.csv"
 
-    try:
-        with connect(
-                host="localhost",
-                user="root",
-                password=getpass("root"),
-        ) as connection:
-            print(connection)
-    except Error as e:
-        print(e)
+    cursor = mysql.connector.connect(user='user1', password='Qrfa1241',
+                              host='127.0.0.1',
+                              database='Topic')
 
-    # loadfile(file)
+    # create_database(cursor)
+    )
+# cnx.close()
+#     try:
+#         with connect(
+#                 host="localhost",
+#                 user="user1"
+#         ) as connection:
+#             loadfile(file)
+#     except Error as e:
+#         print(e)
+
 
 
 def loadfile(file):
@@ -43,11 +70,9 @@ def loadfile(file):
             topic_name = topic_name.replace('"', '')
             topic_description = topic_description.replace('"', '')
 
-            print(topic_name, topic_description)
-            # print("INSERT INTO Topic VALUES (" + "NULL" + ", '" + topic_name + "', '" + topic_description + "');")
-
-            # section_id = section_id.replace('"', '')
-            # item_id = item_id.replace('"', '')
+            # print(topic_name, topic_description)
+            print("INSERT INTO Topic VALUES ('NULL','" + topic_name + "' ," + topic_description + "'");
+            # print("INSERT INTO Topic VALUES ('NULL' + ", '" + topic_name + "', '" + topic_description + "');
             # section_name = section_name.replace('"', '')
             # item_name = item_name.replace('"', '')
 
