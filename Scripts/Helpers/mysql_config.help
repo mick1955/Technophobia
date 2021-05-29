@@ -1,0 +1,17 @@
+Usage: /Applications/MAMP/Library/bin/mysql_config [OPTIONS]
+Compiler: Clang 8.1.0.8020042
+Options:
+        --cflags         [-I/Applications/MAMP/Library/include ]
+        --cxxflags       [-I/Applications/MAMP/Library/include ]
+        --include        [-I/Applications/MAMP/Library/include]
+        --libs           [-L/Applications/MAMP/Library/lib -lmysqlclient ]
+        --libs_r         [-L/Applications/MAMP/Library/lib -lmysqlclient ]
+        --plugindir      [/Applications/MAMP/Library/lib/plugin]
+        --socket         [/Applications/MAMP/tmp/mysql/mysql.sock]
+        --port           [0]
+        --version        [5.7.32]
+        --libmysqld-libs [-L/Applications/MAMP/Library/lib -lmysqld ]
+        --variable=VAR   VAR is one of:
+                pkgincludedir [/Applications/MAMP/Library/include]
+                pkglibdir     [/Applications/MAMP/Library/lib]
+                plugindir     [/Applications/MAMP/Library/lib/plugin]

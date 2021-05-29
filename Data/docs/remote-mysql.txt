@@ -1,0 +1,8 @@
+
+CREATE USER 'tuser'@'localhost' IDENTIFIED BY 'Qrfa1241';
+CREATE USER 'tuser'@'%' IDENTIFIED BY 'Qrfa1241';
+
+GRANT ALL ON *.* TO 'tuser'@'localhost';
+GRANT ALL ON *.* TO 'tuser'@'%';
+
+flush privileges;

@@ -1,0 +1,73 @@
+MySQL Utilities mysqlbinlogpurge version 1.6.5 
+License type: GPLv2
+Usage: mysqlbinlogpurge --master=user:pass@host:port --slaves=user:pass@host:port,user:pass@host:port
+
+mysqlbinlogpurge - purges unnecessary binary log files
+
+Options:
+  --version             show program's version number and exit
+  --help                display a help message and exit
+  --license             display program's license and exit
+  --server=SERVER       connection information for the server in the form:
+                        <user>[:<password>]@<host>[:<port>][:<socket>] or
+                        <login-path>[:<port>][:<socket>] or <config-
+                        path>[<[group]>].
+  --ssl-ca=SSL_CA       path to a file that contains a list of trusted SSL
+                        CAs.
+  --ssl-cert=SSL_CERT   name of the SSL certificate file to use for
+                        establishing a secure connection.
+  --ssl-key=SSL_KEY     name of the SSL key file to use for establishing a
+                        secure connection.
+  --ssl=SSL             specifies if the server connection requires use of
+                        SSL. If an encrypted connection cannot be established,
+                        the connection attempt fails. By default 0 (SSL not
+                        required).
+  -d, --dry-run         run the utility without purge any binary log, instead
+                        it will print the unused binary log files.
+  --binlog=BINLOG       Binlog file name to keep (not to purge). All the
+                        binary log files prior to the specified file will be
+                        removed.
+  --discover-slaves-login=DISCOVER
+                        at startup, query master for all registered slaves and
+                        use the user name and password specified to connect.
+                        Supply the user and password in the form
+                        <user>[:<password>] or <login-path>. For example,
+                        --discover-slaves-login=joe:secret will use 'joe' as
+                        the user and 'secret' as the password for each
+                        discovered slave.
+  --master=MASTER       connection information for master server in the form:
+                        <user>[:<password>]@<host>[:<port>][:<socket>] or
+                        <login-path>[:<port>][:<socket>] or <config-
+                        path>[<[group]>].
+  --slaves=SLAVES       connection information for slave servers in the form:
+                        <user>[:<password>]@<host>[:<port>][:<socket>] or
+                        <login-path>[:<port>][:<socket>] or <config-
+                        path>[<[group]>]. List multiple slaves in comma-
+                        separated list.
+  -v, --verbose         control how much information is displayed. e.g., -v =
+                        verbose, -vv = more verbose, -vvv = debug
+
+Introduction
+------------
+The mysqlbinlogpurge utility was designed to purge binary log files in a
+replication scenario operating in a safe manner by prohibiting deletion of
+binary log files that are open or which are required by a slave (have not
+been read by the slave). The utility verifies the latest binary log file that
+has been read by all the slave servers to determine the binary log files that
+can be deleted.
+
+Note: In order to determine the latest binary log file that has been
+replicated by all the slaves, they must be connected to the master at the time
+the utility is executed.
+
+The following are examples of use:
+  # Purge all the binary log files prior to a specified file for a standalone
+  # server.
+  $ mysqlbinlogpurge --server=root:pass@host1:3306 \
+                     --binlog=bin-log.001302
+
+  # Display the latest binary log that has been replicated by all specified
+  # slaves in a replication scenario.
+  $ mysqlbinlogpurge --master=root:pass@host2:3306 \
+                     --slaves=root:pass@host3:3308,root:pass@host3:3309 \
+                     --dry-run

@@ -1,0 +1,38 @@
+MySQL Utilities mysqldiskusage version 1.6.5 
+License type: GPLv2
+Usage: mysqldiskusage --server=user:pass@host:port:socket db1 --all
+
+mysqldiskusage - show disk usage for databases
+
+Options:
+  --version             show program's version number and exit
+  --help                display a help message and exit
+  --license             display program's license and exit
+  --server=SERVER       connection information for the server in the form:
+                        <user>[:<password>]@<host>[:<port>][:<socket>] or
+                        <login-path>[:<port>][:<socket>] or <config-
+                        path>[<[group]>].
+  --ssl-ca=SSL_CA       path to a file that contains a list of trusted SSL
+                        CAs.
+  --ssl-cert=SSL_CERT   name of the SSL certificate file to use for
+                        establishing a secure connection.
+  --ssl-key=SSL_KEY     name of the SSL key file to use for establishing a
+                        secure connection.
+  --ssl=SSL             specifies if the server connection requires use of
+                        SSL. If an encrypted connection cannot be established,
+                        the connection attempt fails. By default 0 (SSL not
+                        required).
+  -f FORMAT, --format=FORMAT
+                        display the output in either grid (default), tab, csv,
+                        or vertical format
+  -h, --no-headers      do not show column headers (only applies to formats:
+                        grid, tab, csv).
+  -b, --binlog          include binary log usage
+  -r, --relaylog        include relay log usage
+  -l, --logs            include general and slow log usage
+  -i, --innodb          include InnoDB tablespace usage
+  -m, --empty           include empty databases
+  -a, --all             show all usage including empty databases
+  -v, --verbose         control how much information is displayed. e.g., -v =
+                        verbose, -vv = more verbose, -vvv = debug
+  -q, --quiet           turn off all messages for quiet execution.

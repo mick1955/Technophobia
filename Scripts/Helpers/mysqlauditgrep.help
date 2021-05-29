@@ -1,0 +1,56 @@
+MySQL Utilities mysqlauditgrep version 1.6.5 
+License type: GPLv2
+Usage: mysqlauditgrep [options] AUDIT_LOG_FILE 
+
+mysqlauditgrep - audit log search utility
+
+Options:
+  --version             show program's version number and exit
+  --help                display this help message and exit
+  --license             display program's license and exit
+  -f FORMAT, --format=FORMAT
+                        display the output in either GRID (default), TAB, CSV,
+                        VERTICAL and RAW format
+  -u USERS, --users=USERS
+                        find log entries by user name. Accepts a comma-
+                        separated list of user names, for example:
+                        joe,sally,nick
+  --file-stats          display the audit log statistics.
+  --start-date=START_DATE
+                        retrieve log entries starting from the specified
+                        date/time. If not specified or the value is 0, all
+                        entries from the start of the log are displayed.
+                        Accepted formats: yyyy-mm-ddThh:mm:ss or yyyy-mm-dd.
+  --end-date=END_DATE   retrieve log entries until the specified date/time. If
+                        not specified or the value is 0, all entries to the
+                        end of the log are displayed. Accepted formats: yyyy-
+                        mm-ddThh:mm:ss or yyyy-mm-dd.
+  -e PATTERN, --pattern=PATTERN
+                        search pattern to retrieve matching entries.
+  --query-type=QUERY_TYPE
+                        search for all SQL statements/commands from the given
+                        list of commands. Accepts a comma-separated list of
+                        commands. Supported values: CREATE, ALTER, DROP,
+                        TRUNCATE, RENAME, GRANT, REVOKE, SELECT, INSERT,
+                        UPDATE, DELETE, COMMIT, SHOW, SET, CALL, PREPARE,
+                        EXECUTE, DEALLOCATE
+  --event-type=EVENT_TYPE
+                        search for all recorded event types from the given
+                        list of supported log events. Accepts a comma-
+                        separated list of event types. Supported values:
+                        Audit, Binlog Dump, Change user, Close stmt, Connect
+                        Out, Connect, Create DB, Daemon, Debug, Delayed
+                        insert, Drop DB, Execute, Fetch, Field List, Init DB,
+                        Kill, Long Data, NoAudit, Ping, Prepare, Processlist,
+                        Query, Quit, Refresh, Register Slave, Reset stmt, Set
+                        option, Shutdown, Sleep, Statistics, Table Dump, Time
+  --status=STATUS       search for all entries with the specified status
+                        values. Accepts a comma-separated list of non-negative
+                        integers (corresponding to MySQL error codes) or
+                        intervals marked with a dash. For example:
+                        1051,1068-1075,1109,1146.
+  -G, --basic-regexp, --regexp
+                        use 'REGEXP' operator to match pattern. Default is to
+                        use 'LIKE'.
+  -v, --verbose         control how much information is displayed. e.g., -v =
+                        verbose, -vv = more verbose, -vvv = debug

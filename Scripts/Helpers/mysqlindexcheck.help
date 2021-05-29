@@ -1,0 +1,37 @@
+MySQL Utilities mysqlindexcheck version 1.6.5 
+License type: GPLv2
+Usage: mysqlindexcheck --server=user:pass@host:port:socket db1.table1 db2 db3.table2
+
+mysqlindexcheck - check for duplicate or redundant indexes
+
+Options:
+  --version             show program's version number and exit
+  --help                display a help message and exit
+  --license             display program's license and exit
+  --server=SERVER       connection information for the server in the form:
+                        <user>[:<password>]@<host>[:<port>][:<socket>] or
+                        <login-path>[:<port>][:<socket>] or <config-
+                        path>[<[group]>].
+  --ssl-ca=SSL_CA       path to a file that contains a list of trusted SSL
+                        CAs.
+  --ssl-cert=SSL_CERT   name of the SSL certificate file to use for
+                        establishing a secure connection.
+  --ssl-key=SSL_KEY     name of the SSL key file to use for establishing a
+                        secure connection.
+  --ssl=SSL             specifies if the server connection requires use of
+                        SSL. If an encrypted connection cannot be established,
+                        the connection attempt fails. By default 0 (SSL not
+                        required).
+  -d, --show-drops      display DROP statements for dropping indexes
+  -i, --show-indexes    display indexes for each table
+  -s, --skip            skip tables that do not exist
+  -f FORMAT, --format=FORMAT
+                        display the list of indexes per table in either sql,
+                        grid (default), tab, csv, or vertical format
+  --stats               show index performance statistics
+  --best=BEST           limit index statistics to the best N indexes
+  --worst=WORST         limit index statistics to the worst N indexes
+  -r, --report-indexes  reports if a table has neither UNIQUE indexes nor a
+                        PRIMARY key
+  -v, --verbose         control how much information is displayed. e.g., -v =
+                        verbose, -vv = more verbose, -vvv = debug

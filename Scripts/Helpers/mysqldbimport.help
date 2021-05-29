@@ -1,0 +1,72 @@
+MySQL Utilities mysqldbimport version 1.6.5 
+License type: GPLv2
+Usage: mysqldbimport --server=user:pass@host:port:socket db1.csv db2.sql db3.grid
+
+mysqldbimport - import metadata and data from files
+
+Options:
+  --version             show program's version number and exit
+  --help                display a help message and exit
+  --license             display program's license and exit
+  --server=SERVER       connection information for the server in the form:
+                        <user>[:<password>]@<host>[:<port>][:<socket>] or
+                        <login-path>[:<port>][:<socket>] or <config-
+                        path>[<[group]>].
+  --ssl-ca=SSL_CA       path to a file that contains a list of trusted SSL
+                        CAs.
+  --ssl-cert=SSL_CERT   name of the SSL certificate file to use for
+                        establishing a secure connection.
+  --ssl-key=SSL_KEY     name of the SSL key file to use for establishing a
+                        secure connection.
+  --ssl=SSL             specifies if the server connection requires use of
+                        SSL. If an encrypted connection cannot be established,
+                        the connection attempt fails. By default 0 (SSL not
+                        required).
+  --character-set=CHARSET
+                        sets the client character set. The default is
+                        retrieved from the server variable
+                        'character_set_client'.
+  -f FORMAT, --format=FORMAT
+                        the input file format in either sql (default), grid,
+                        tab, csv, raw_csv or vertical format
+  -i IMPORT_TYPE, --import=IMPORT_TYPE
+                        control the import of either 'data' = only the table
+                        data for the tables in the database list,
+                        'definitions' = import only the definitions for the
+                        objects in the database list, or 'both' = import the
+                        metadata followed by the data (default: import
+                        definitions)
+  -d, --drop-first      drop database before importing.
+  -b, --bulk-insert     use bulk insert statements for data (default:False)
+  -h, --no-headers      files do not contain column headers (only applies to
+                        formats: tab, csv).
+  --dryrun              import the files and generate the statements but do
+                        not execute them - useful for testing file validity
+  --table=TABLE         destination table in the form: <db>.<table>.
+  --skip-blobs          do not import blob data.
+  --skip-rpl            do not execute replication commands.
+  --skip-gtid           do not execute the GTID_PURGED statements.
+  --skip=SKIP_OBJECTS   specify objects to skip in the operation in the form
+                        of a comma-separated list (no spaces). Valid values =
+                        tables, views, triggers, procedures, functions,
+                        events, grants, data, create_db
+  -v, --verbose         control how much information is displayed. e.g., -v =
+                        verbose, -vv = more verbose, -vvv = debug
+  -q, --quiet           turn off all messages for quiet execution.
+  --new-storage-engine=NEW_ENGINE
+                        change all tables to use this storage engine if
+                        storage engine exists on the destination.
+  --default-storage-engine=DEF_ENGINE
+                        change all tables to use this storage engine if the
+                        original storage engine does not exist on the
+                        destination.
+  --multiprocess=MULTIPROCESS
+                        use multiprocessing, number of processes to use for
+                        concurrent execution. Special values: 0 (number of
+                        processes equal to the CPUs detected) and 1 (default -
+                        no concurrency).
+  --autocommit          use autocommit, by default autocommit is off and
+                        transactions are only committed once at the end of
+                        each imported file.
+  --max-bulk-insert=MAX_BULK_INSERT
+                        maximum bulk insert size, by default 30000.

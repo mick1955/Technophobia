@@ -1,0 +1,26 @@
+MySQL Utilities mysqluc version 1.6.5 
+License type: GPLv2
+Usage: mysqluc 
+
+mysqluc - Command line client for running MySQL Utilities
+
+Options:
+  --version             show program's version number and exit
+  --help                display this help message and exit
+  --license             display program's license and exit
+  --width=WIDTH         display width
+  --utildir=UTILDIR     location of utilities
+  -e COMMANDS, --execute=COMMANDS
+                        execute commands and exit. Multiple commands are
+                        separated with semi-colons. Note: some platforms may
+                        require double quotes around command list.
+  --add-utility=ADD_UTIL
+                        append an utility in the format mysql<utility_name>.
+                        The mysql<utility_name>.py must be located inside the
+                        folder given by the utildir option
+  --hide-utils          when this option is given, the default utilities will
+                        not be available, must be used only along of --add-
+                        utility option
+  -v, --verbose         control how much information is displayed. e.g., -v =
+                        verbose, -vv = more verbose, -vvv = debug
+  -q, --quiet           turn off all messages for quiet execution.

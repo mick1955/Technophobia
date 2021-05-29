@@ -1,0 +1,28 @@
+Usage: /Applications/MAMP/Library/bin/mysqld_safe [OPTIONS]
+ The following options may be given as the first argument:
+  --no-defaults              Don't read the system defaults file
+  --defaults-file=FILE       Use the specified defaults file
+  --defaults-extra-file=FILE Also use defaults from the specified file
+
+ Other options:
+  --ledir=DIRECTORY          Look for mysqld in the specified directory
+  --open-files-limit=LIMIT   Limit the number of open files
+  --core-file-size=LIMIT     Limit core files to the specified size
+  --timezone=TZ              Set the system timezone
+  --malloc-lib=LIB           Preload shared library LIB if available
+  --mysqld=FILE              Use the specified file as mysqld
+  --mysqld-version=VERSION   Use "mysqld-VERSION" as mysqld
+  --nice=NICE                Set the scheduling priority of mysqld
+  --plugin-dir=DIR           Plugins are under DIR or DIR/VERSION, if
+                             VERSION is given
+  --skip-kill-mysqld         Don't try to kill stray mysqld processes
+  --syslog                   Log messages to syslog with 'logger'
+  --skip-syslog              Log messages to error log (default)
+  --syslog-tag=TAG           Pass -t "mysqld-TAG" to 'logger'
+  --mysqld-safe-log-         TYPE must be one of UTC (ISO 8601 UTC),
+    timestamps=TYPE          system (ISO 8601 local time), hyphen
+                             (hyphenated date a la mysqld 5.6), legacy
+                             (legacy non-ISO 8601 mysqld_safe timestamps)
+
+All other options are passed to the mysqld program.
+

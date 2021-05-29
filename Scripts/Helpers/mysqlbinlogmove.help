@@ -1,0 +1,124 @@
+MySQL Utilities mysqlbinlogmove version 1.6.5 
+License type: GPLv2
+Usage: mysqlbinlogmove --server=user:pass@host:port <destination_directory>
+
+mysqlbinlogmove - binary log relocate utility
+
+Options:
+  --version             show program's version number and exit
+  --help                display a help message and exit
+  --license             display program's license and exit
+  --server=SERVER       connection information for the server in the form:
+                        <user>[:<password>]@<host>[:<port>][:<socket>] or
+                        <login-path>[:<port>][:<socket>] or <config-
+                        path>[<[group]>].
+  --ssl-ca=SSL_CA       path to a file that contains a list of trusted SSL
+                        CAs.
+  --ssl-cert=SSL_CERT   name of the SSL certificate file to use for
+                        establishing a secure connection.
+  --ssl-key=SSL_KEY     name of the SSL key file to use for establishing a
+                        secure connection.
+  --ssl=SSL             specifies if the server connection requires use of
+                        SSL. If an encrypted connection cannot be established,
+                        the connection attempt fails. By default 0 (SSL not
+                        required).
+  --binlog-dir=BINLOG_DIR
+                        Source directory (full path) where the binary log
+                        files to move are located.
+  --bin-log-basename=BIN_LOG_BASENAME
+                        Basename for the binlog files. If not available it is
+                        assumed to be any name ended with '-bin'.
+  --relay-log-basename=RELAY_LOG_BASENAME
+                        Basename for the relay log files. If not available it
+                        is assumed to be any name ended with '-relay-bin'.
+  --bin-log-index=BIN_LOG_INDEX
+                        Location (full path) of the binlogs index file. If not
+                        specified it is assumed to be located in the binary
+                        log directory.
+  --relay-log-index=RELAY_LOG_INDEX
+                        Location (full path) of the relay logs index file. If
+                        not specified it is assumed to be located in the
+                        binary log directory.
+  -v, --verbose         control how much information is displayed. e.g., -v =
+                        verbose, -vv = more verbose, -vvv = debug
+  --log-type=LOG_TYPE   type of the binary log files to relocate: 'bin' - bin-
+                        log files (default), 'relay' - relay-log files, 'all'
+                        - bin-log and relay-log files.
+  --sequence=SEQUENCE   relocate files with the specified sequence values.
+                        Accepts a comma-separated list of non-negative
+                        integers (corresponding to the file sequence number)
+                        or intervals marked with a dash. For example:
+                        3,5-12,16,21.
+  --modified-before=MODIFIED_BEFORE
+                        relocate files with the modified date prior to the
+                        specified date/time or number of days. Accepts a
+                        date/time in the format: yyyy-mm-ddThh:mm:ss or yyyy-
+                        mm-dd, or an integer for the elapsed days.
+  --skip-flush-binlogs  Skip the binary/relay flush operation to reload
+                        server's cache after moving files.
+
+Introduction
+------------
+The mysqlbinlogmove utility was designed to relocate binary log files to a new
+location in a simple and easy way. The use of this utility is recommended when
+you intend to change the base location for the binlog files (enabled with the
+server option --log-bin) moving all binlog files to the target location and
+updating all required index files. It is also useful to archive some binary
+log files to a different location.
+
+Note: In order to relocate all binary log files the mysql server must be
+stopped. This requirement is not needed if only some of binary log files are
+relocated.
+
+The behaviour of the utility depends on the options specified. Use the
+--binlog_dir option to relocate all binary logs. Use the --server option to
+relocate all binary logs except the ones currently in use (with the higher
+sequence number). The target destination directory must be specified as an
+argument and other option can be used to restrict the binary log files that
+will be moved, as shown in the following examples.
+
+  # Move all binlog files to a new location (from /old/location
+  # to /new/location).
+
+  $ mysqlbinlogmove --binlog-dir=/old/location /new/location
+
+  # Move all binlog files except the one currently in use to a new
+  # location (from the server log_bin_basename directory to /new/location).
+
+  $ mysqlbinlogmove --server=root:pass@host1:3306 /new/location
+
+  # Move all binlog files within a specific sequence range (10-100),
+  # except the one currently in use, to a new location (from the server
+  # log_bin_basename directory to /new/location).
+
+  $ mysqlbinlogmove --server=root:pass@host1:3306 --sequence=10-100 \
+                    /new/location
+
+  # Move all binlog files not modified in the last two days, except the one
+  # currently in use, to a new location (from the server log_bin_basename
+  # directory to /new/location).
+
+  $ mysqlbinlogmove --server=root:pass@host1:3306 --modified-before=2 \
+                    /new/location
+
+  # Move all binlog files older than a specific date (not modified),
+  # except the one currently in use, to a new location (from the server
+  # log_bin_basename directory to /new/location).
+
+  $ mysqlbinlogmove --server=root:pass@host1:3306 \
+                    --modified-before=2004-07-30 /new/location
+
+
+Helpful Hints
+-------------
+  - By default only binlog files are moved. To move relay log files or both
+    use the --log-type option with the desired value.
+  - By default the utility will try to automatically determine the base name
+    for the binary logs and index files by applying the default filename
+    formats and files location. If custom file names are used, you can specify
+    them using the options --bin-log-index, --bin-log-basename,
+    --relay-log-index, and --relay-log-basename, respectively for binlog and
+    relay log files.
+  - When the --server option is used by default binary logs are flushed at the
+    end of the relocate operation in order to update the server's info. Use
+    --skip-flush-binlogs to skip this step.

@@ -1,0 +1,98 @@
+MySQL Utilities mysqldbexport version 1.6.5 
+License type: GPLv2
+Usage: mysqldbexport --server=user:pass@host:port:socket db1, db2, db3
+
+mysqldbexport - export metadata and data from databases
+
+Options:
+  --version             show program's version number and exit
+  --help                display a help message and exit
+  --license             display program's license and exit
+  --server=SERVER       connection information for the server in the form:
+                        <user>[:<password>]@<host>[:<port>][:<socket>] or
+                        <login-path>[:<port>][:<socket>] or <config-
+                        path>[<[group]>].
+  --ssl-ca=SSL_CA       path to a file that contains a list of trusted SSL
+                        CAs.
+  --ssl-cert=SSL_CERT   name of the SSL certificate file to use for
+                        establishing a secure connection.
+  --ssl-key=SSL_KEY     name of the SSL key file to use for establishing a
+                        secure connection.
+  --ssl=SSL             specifies if the server connection requires use of
+                        SSL. If an encrypted connection cannot be established,
+                        the connection attempt fails. By default 0 (SSL not
+                        required).
+  --character-set=CHARSET
+                        sets the client character set. The default is
+                        retrieved from the server variable
+                        'character_set_client'.
+  -f FORMAT, --format=FORMAT
+                        display the output in either sql (default), grid, tab,
+                        csv, or vertical format
+  -d DISPLAY, --display=DISPLAY
+                        control the number of columns shown: 'brief' = minimal
+                        columns for object creation (default), 'full' = all
+                        columns, 'names' = only object names (not valid for
+                        --format=sql)
+  -e EXPORT, --export=EXPORT
+                        control the export of either 'data' = only the table
+                        data for the tables in the database list,
+                        'definitions' = export only the definitions for the
+                        objects in the database list, or 'both' = export the
+                        metadata followed by the data (default: export
+                        definitions)
+  -b, --bulk-insert     use bulk insert statements for data (default:False)
+  -h, --no-headers      do not show column headers (only applies to formats:
+                        tab, csv).
+  --skip-blobs          do not export blob data.
+  --file-per-table      write table data to separate files. Valid only for
+                        --export=data or --export=both.
+  -x EXCLUDE, --exclude=EXCLUDE
+                        exclude one or more objects from the operation using
+                        either a specific name (e.g. db1.t1), a LIKE pattern
+                        (e.g. db1.t% or db%.%) or a REGEXP search pattern. To
+                        use a REGEXP search pattern for all exclusions, you
+                        must also specify the --regexp option. Repeat the
+                        --exclude option for multiple exclusions.
+  -a, --all             include all databases
+  --skip=SKIP_OBJECTS   specify objects to skip in the operation in the form
+                        of a comma-separated list (no spaces). Valid values =
+                        tables, views, triggers, procedures, functions,
+                        events, grants, data, create_db
+  -v, --verbose         control how much information is displayed. e.g., -v =
+                        verbose, -vv = more verbose, -vvv = debug
+  -q, --quiet           turn off all messages for quiet execution.
+  -G, --basic-regexp, --regexp
+                        use 'REGEXP' operator to match pattern. Default is to
+                        use 'LIKE'.
+  --locking=LOCKING     choose the lock type for the operation: no-locks = do
+                        not use any table locks, lock-all = use table locks
+                        but no transaction and no consistent read, snaphot
+                        (default): consistent read using a single transaction.
+  --rpl-user=RPL_USER   the user and password for the replication user
+                        requirement, in the form: <user>[:<password>] or
+                        <login-path>. E.g. rpl:passwd
+  --rpl=RPL_MODE, --replication=RPL_MODE
+                        include replication information. Choices: 'master' =
+                        include the CHANGE MASTER command using the source
+                        server as the master, 'slave' = include the CHANGE
+                        MASTER command for the source server's master (only
+                        works if the source server is a slave), and 'both' =
+                        include 'master' and 'slave' options where applicable.
+  --rpl-file=RPL_FILE, --replication-file=RPL_FILE
+                        path and file name to place the replication
+                        information generated. Valid on if the --rpl option is
+                        specified.
+  --skip-gtid           skip creation of GTID_PURGED statements.
+  --comment-rpl         place the replication statements in comment
+                        statements. Valid only with --rpl option.
+  --skip-fkey-checks    skip creation of foreign key disable/enable
+                        statements.
+  --multiprocess=MULTIPROCESS
+                        use multiprocessing, number of processes to use for
+                        concurrent execution. Special values: 0 (number of
+                        processes equal to the CPUs detected) and 1 (default -
+                        no concurrency).
+  --output-file=OUTPUT_FILE
+                        path and file name to store the generated output, by
+                        default the standard output (no file).

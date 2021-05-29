@@ -1,0 +1,79 @@
+mysql_install_db Ver 5.7.32, for osx10.12 on x86_64
+Copyright (c) 2015, 2020, Oracle and/or its affiliates. All rights reserved.
+
+Oracle is a registered trademark of Oracle Corporation and/or its
+affiliates. Other names may be trademarks of their respective
+owners.
+
+MySQL Database Deployment Utility.
+Usage: mysql_install_db [OPTIONS]
+  -?, --help          Display this help and exit.
+  --admin-auth-plugin=name 
+                      Plugin to use for the default admin account.
+  --admin-host=name   Hostname part of the default admin account.
+  --admin-require-ssl Require SSL/TLS for the default admin account.
+  --admin-user=name   Username part of the default admin account.
+  --basedir=name      The path to the MySQL installation directory.
+  --builddir=name     For use with --srcdir and out-of-source builds. Set this
+                      to the location of the directory where the built files
+                      reside.
+  --datadir=name      The path to the MySQL data directory.
+  -f, --extra-sql-file=name 
+                      Optional SQL file to execute during bootstrap.
+  --insecure          Disables random passwords for the default admin account.
+  --lc-messages=name  Specifies the language to use.
+  -l, --lc-messages-dir=name 
+                      Specifies the path to the language files.
+  --login-file=name   Use the MySQL password store at the specified location 
+                      to set the default password. This option takes precedence
+                      over admin-user, admin-host options. Use the login-path
+                      option to change the default credential category (default
+                      is 'client').
+  --login-path=name   Set the credential category to use with the MySQL
+                      password store when setting default credentials. This
+                      option takes precedence over admin-user, admin-host
+                      options.
+  --mysqld-file=name  Qualified path to the mysqld binary.
+  --random-password-file=name 
+                      Specifies the qualified path to the .mysql_secret
+                      temporary password file.
+  --skip-sys-schema   Skip installation of the sys schema.
+  --srcdir=name       For internal use. This option specifies the directory
+                      under which mysql_install_db looks for support files such
+                      as the error message file and the file for populating the
+                      help tables.
+  -u, --user=name     The effective user id used when executing the bootstrap
+                      sequence.
+  -v, --verbose       Be more verbose when running program.
+  -V, --version       Print program version and exit.
+
+The following options may be given as the first argument:
+--print-defaults        Print the program argument list and exit.
+--no-defaults           Don't read default options from any option file,
+                        except for login file.
+--defaults-file=#       Only read default options from the given file #.
+--defaults-extra-file=# Read this file after the global files are read.
+
+Variables (--variable-name=value)
+and boolean options {FALSE|TRUE}  Value (after reading options)
+--------------------------------- ----------------------------------------
+admin-auth-plugin                 mysql_native_password
+admin-host                        localhost
+admin-require-ssl                 FALSE
+admin-user                        root
+basedir                           (No default value)
+builddir                          (No default value)
+datadir                           (No default value)
+extra-sql-file                    (No default value)
+insecure                          FALSE
+lc-messages                       en_US
+lc-messages-dir                   (No default value)
+login-file                        (No default value)
+login-path                        client
+mysqld-file                       (No default value)
+random-password-file              (No default value)
+skip-sys-schema                   FALSE
+srcdir                            (No default value)
+user                              (No default value)
+verbose                           FALSE
+version                           FALSE

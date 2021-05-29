@@ -1,0 +1,23 @@
+mysql_ssl_rsa_setup Version : 1.0.0 Distribution : 5.7.32 For : osx10.12 On : x86_64
+Copyright (c) 2015, 2020, Oracle and/or its affiliates. All rights reserved.
+
+Oracle is a registered trademark of Oracle Corporation and/or its
+affiliates. Other names may be trademarks of their respective
+owners.
+
+MySQL SSL Certificate and RSA Key Generation Utility
+Usage : mysql_ssl_rsa_setup [OPTIONS]
+  -?, --help          Display this help and exit.
+  -v, --verbose       Be more verbose when running program
+  -V, --version       Print program version and exit
+  -d, --datadir=name  Directory to store generated files.
+  -s, --suffix=name   Suffix to be added in certificate subject line
+  --uid=name          The effective user id to be used for file permission
+
+Variables (--variable-name=value)
+and boolean options {FALSE|TRUE}  Value (after reading options)
+--------------------------------- ----------------------------------------
+verbose                           FALSE
+datadir                           /Applications/MAMP/db/mysql57
+suffix                            5.7.32
+uid                               (No default value)

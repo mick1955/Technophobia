@@ -1,0 +1,41 @@
+MySQL Utilities mysqlrplcheck version 1.6.5 
+License type: GPLv2
+Usage: mysqlrplcheck --master=root@localhost:3306 --slave=root@localhost:3310 
+
+mysqlrplcheck - check replication
+
+Options:
+  --version             show program's version number and exit
+  --help                display a help message and exit
+  --license             display program's license and exit
+  --master=MASTER       connection information for master server in the form:
+                        <user>[:<password>]@<host>[:<port>][:<socket>] or
+                        <login-path>[:<port>][:<socket>] or <config-
+                        path>[<[group]>].
+  --slave=SLAVE         connection information for slave server in the form:
+                        <user>[:<password>]@<host>[:<port>][:<socket>] or
+                        <login-path>[:<port>][:<socket>] or <config-
+                        path>[<[group]>].
+  --master-info-file=MASTER_INFO
+                        the name of the master information file on the slave.
+                        Default = 'master.info' read from the data directory.
+                        Note: this option requires that the utility run on the
+                        slave with appropriate file read access to the data
+                        directory.
+  -s, --show-slave-status
+                        show slave status
+  --width=WIDTH         display width
+  --suppress            suppress warning messages
+  --ssl-ca=SSL_CA       path to a file that contains a list of trusted SSL
+                        CAs.
+  --ssl-cert=SSL_CERT   name of the SSL certificate file to use for
+                        establishing a secure connection.
+  --ssl-key=SSL_KEY     name of the SSL key file to use for establishing a
+                        secure connection.
+  --ssl=SSL             specifies if the server connection requires use of
+                        SSL. If an encrypted connection cannot be established,
+                        the connection attempt fails. By default 0 (SSL not
+                        required).
+  -v, --verbose         control how much information is displayed. e.g., -v =
+                        verbose, -vv = more verbose, -vvv = debug
+  -q, --quiet           turn off all messages for quiet execution.

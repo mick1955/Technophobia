@@ -1,0 +1,89 @@
+MySQL Utilities mysqldbcompare version 1.6.5 
+License type: GPLv2
+Usage: mysqldbcompare --server1=user:pass@host:port:socket --server2=user:pass@host:port:socket db1:db2
+
+mysqldbcompare - compare databases for consistency
+
+Options:
+  --version             show program's version number and exit
+  --help                display a help message and exit
+  --license             display program's license and exit
+  --server1=SERVER1     connection information for first server in the form:
+                        <user>[:<password>]@<host>[:<port>][:<socket>] or
+                        <login-path>[:<port>][:<socket>].
+  --server2=SERVER2     connection information for second server in the form:
+                        <user>[:<password>]@<host>[:<port>][:<socket>] or
+                        <login-path>[:<port>][:<socket>].
+  --character-set=CHARSET
+                        sets the client character set. The default is
+                        retrieved from the server variable
+                        'character_set_client'.
+  -f FORMAT, --format=FORMAT
+                        display the output in either grid (default), tab, csv,
+                        or vertical format
+  --skip-checksum-table
+                        skip CHECKSUM TABLE step in data consistency check.
+  --skip-object-compare
+                        skip object comparison step.
+  --skip-row-count      skip row count step.
+  --skip-diff           skip the object diff step.
+  --skip-data-check     skip data consistency check.
+  --skip-table-options  skip check of all table options (e.g., AUTO_INCREMENT,
+                        ENGINE, CHARSET, etc.).
+  --width=WIDTH         display width
+  -t, --run-all-tests   do not abort when a diff test fails
+  -a, --all             check all databases
+  -x EXCLUDE, --exclude=EXCLUDE
+                        exclude one or more databases from the operation using
+                        either a specific name (e.g. db1), a LIKE pattern
+                        (e.g. db%) or a REGEXP search pattern. To use a REGEXP
+                        search pattern for all exclusions, you must also
+                        specify the --regexp option. Repeat the --exclude
+                        option for multiple exclusions.
+  -c, --compact         compact output from a diff.
+  --disable-binary-logging
+                        turn binary logging off during operation if enabled
+                        (SQL_LOG_BIN=1). Note: may require SUPER privilege.
+                        Prevents compare operations from being written to the
+                        binary log.
+  --span-key-size=SPAN_KEY_SIZE
+                        changes the size of the key used for compare table
+                        contents. A higher value can help to get more accurate
+                        results comparing large databases, but may slow the
+                        algorithm. Default value is 8.
+  --use-indexes=USE_INDEXES
+                        for each table, indicate which index to use as if were
+                        a primary key (each of his columns must not allow null
+                        values).
+  -v, --verbose         control how much information is displayed. e.g., -v =
+                        verbose, -vv = more verbose, -vvv = debug
+  -q, --quiet           turn off all messages for quiet execution.
+  -d DIFFTYPE, --difftype=DIFFTYPE
+                        display differences in context format in one of the
+                        following formats: [unified|context|differ|sql]
+                        (default: unified).
+  --changes-for=CHANGES_FOR
+                        specify the server to show transformations to match
+                        the other server. For example, to see the
+                        transformation for transforming server1 to match
+                        server2, use --changes-for=server1. Valid values are
+                        'server1' or 'server2'. The default is 'server1'.
+  --show-reverse        produce a transformation report containing the SQL
+                        statements to transform the object definitions
+                        specified in reverse. For example if --changes-for is
+                        set to server1, also generate the transformation for
+                        server2. Note: the reverse changes are annotated and
+                        marked as comments.
+  -G, --basic-regexp, --regexp
+                        use 'REGEXP' operator to match pattern. Default is to
+                        use 'LIKE'.
+  --ssl-ca=SSL_CA       path to a file that contains a list of trusted SSL
+                        CAs.
+  --ssl-cert=SSL_CERT   name of the SSL certificate file to use for
+                        establishing a secure connection.
+  --ssl-key=SSL_KEY     name of the SSL key file to use for establishing a
+                        secure connection.
+  --ssl=SSL             specifies if the server connection requires use of
+                        SSL. If an encrypted connection cannot be established,
+                        the connection attempt fails. By default 0 (SSL not
+                        required).

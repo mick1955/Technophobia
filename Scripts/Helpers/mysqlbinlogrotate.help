@@ -1,0 +1,40 @@
+MySQL Utilities mysqlbinlogrotate version 1.6.5 
+License type: GPLv2
+Usage: mysqlbinlogrotate --server=user:pass@host:port
+
+mysqlbinlogrotate - rotates the active binary log file
+
+Options:
+  --version            show program's version number and exit
+  --help               display a help message and exit
+  --license            display program's license and exit
+  --server=SERVER      connection information for the server in the form:
+                       <user>[:<password>]@<host>[:<port>][:<socket>] or
+                       <login-path>[:<port>][:<socket>] or <config-
+                       path>[<[group]>].
+  --ssl-ca=SSL_CA      path to a file that contains a list of trusted SSL CAs.
+  --ssl-cert=SSL_CERT  name of the SSL certificate file to use for
+                       establishing a secure connection.
+  --ssl-key=SSL_KEY    name of the SSL key file to use for establishing a
+                       secure connection.
+  --ssl=SSL            specifies if the server connection requires use of SSL.
+                       If an encrypted connection cannot be established, the
+                       connection attempt fails. By default 0 (SSL not
+                       required).
+  --min-size=MIN_SIZE  rotate the active binlog file only if the file size
+                       exceeds the specified value in bytes.
+  -v, --verbose        control how much information is displayed. e.g., -v =
+                       verbose, -vv = more verbose, -vvv = debug
+
+Introduction
+------------
+The mysqlbinlogrotate utility was designed to rotate the active binary log.
+
+The following are examples of use:
+  # Rotate the active binary log from a server.
+  $ mysqlbinlogrotate --server=root:pass@host1:3306
+
+  # Rotate the active binary log from a server if the active binlog is bigger
+  # than 1MB or 1048576 bytes.
+  $ mysqlbinlogrotate --server=root:pass@host1:3306 \
+                      --min-size=1048576

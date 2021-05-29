@@ -1,0 +1,120 @@
+MySQL Utilities mysqlrplsync version 1.6.5 
+License type: GPLv2
+Usage: mysqlrplsync --master=user:pass@host:port --slaves=user:pass@host:port \
+                    [<db_name>[.<tbl_name>]]
+
+mysqlrplsync - replication synchronization checker utility
+
+Options:
+  --version             show program's version number and exit
+  --help                display a help message and exit
+  --license             display program's license and exit
+  --discover-slaves-login=DISCOVER
+                        at startup, query master for all registered slaves and
+                        use the user name and password specified to connect.
+                        Supply the user and password in the form
+                        <user>[:<password>] or <login-path>. For example,
+                        --discover-slaves-login=joe:secret will use 'joe' as
+                        the user and 'secret' as the password for each
+                        discovered slave.
+  --master=MASTER       connection information for master server in the form:
+                        <user>[:<password>]@<host>[:<port>][:<socket>] or
+                        <login-path>[:<port>][:<socket>] or <config-
+                        path>[<[group]>].
+  --slaves=SLAVES       connection information for slave servers in the form:
+                        <user>[:<password>]@<host>[:<port>][:<socket>] or
+                        <login-path>[:<port>][:<socket>] or <config-
+                        path>[<[group]>]. List multiple slaves in comma-
+                        separated list.
+  --ssl-ca=SSL_CA       path to a file that contains a list of trusted SSL
+                        CAs.
+  --ssl-cert=SSL_CERT   name of the SSL certificate file to use for
+                        establishing a secure connection.
+  --ssl-key=SSL_KEY     name of the SSL key file to use for establishing a
+                        secure connection.
+  --ssl=SSL             specifies if the server connection requires use of
+                        SSL. If an encrypted connection cannot be established,
+                        the connection attempt fails. By default 0 (SSL not
+                        required).
+  -v, --verbose         control how much information is displayed. e.g., -v =
+                        verbose, -vv = more verbose, -vvv = debug
+  --rpl-timeout=RPL_TIMEOUT
+                        maximum timeout in seconds to wait for synchronization
+                        (slave waiting to catch up to master). Default = 300.
+  --checksum-timeout=CHECKSUM_TIMEOUT
+                        maximum timeout in seconds to wait for CHECKSUM query
+                        to complete. Default = 5.
+  -i INTERVAL, --interval=INTERVAL
+                        interval in seconds for polling slaves for sync
+                        status. Default = 3.
+  --exclude=EXCLUDE     databases or tables to exclude. Example:
+                        <db_name>[.<tbl_name>]. List multiple names in a
+                        comma-separated list.
+
+Introduction
+------------
+The mysqlrplsync utility is designed to check if replication servers with
+GTIDs enabled are synchronized. In other words, it checks the data consistency
+between a master and a slave or between two slaves.
+
+The utility permits you to run the check while replication is active. The
+synchronization algorithm is applied using GTID information to identify those
+transactions that differ (missing, not read, etc.) between the servers. During
+the process, the utility waits for the slave to catch up to the master to
+ensure all GTIDs have been read prior to performing the data consistency
+check.
+
+Note: if replication is not running (e.g., all slaves are stopped), the
+utility can still perform the check, but the step to wait for the slave to
+catch up to the master will be skipped. If you want to run the utility on a
+stopped replication topology, you should ensure the slaves are up to date
+first.
+
+By default, all data is included in the comparison. To check specific
+databases or tables, list each element as a separated argument for the
+utility using full qualified names as shown in the following examples.
+
+  # Check the data consistency of a replication topology, explicitly
+  # specifying the master and slaves.
+
+  $ mysqlrplsync --master=root:pass@host1:3306 \
+                 --slaves=rpl:pass@host2:3306,rpl:pass@host3:3306
+
+  # Check the data consistency of a replication topology, specifying the
+  # master and using the slaves discovery feature.
+
+  $ mysqlrplsync --master=root:pass@host1:3306 \
+                 --discover-slaves-login=rpl:pass
+
+  # Check the data consistency only between specific slaves (no check
+  # performed on the master).
+
+  $ mysqlrplsync --slaves=rpl:pass@host2:3306,rpl:pass@host3:3306
+
+  # Check the data consistency of a specific database (db1) and table
+  # (db2.t1), explicitly specifying master and slaves.
+
+  $ mysqlrplsync --master=root:pass@host1:3306 \
+                 --slaves=rpl:pass@host2:3306,rpl:pass@host3:3306 \
+                 db1 db2.t1
+
+  # Check the data consistency of all data excluding a specific database
+  # (db2) and table (db1.t2), specifying the master and using slave
+  # discovery.
+
+  $ mysqlrplsync --master=root:pass@host1:3306 \
+                 --discover-slaves-login=rpl:pass --exclude=db2,db1.t2
+
+
+Helpful Hints
+-------------
+  - The default timeout for performing the table checksum is 5 seconds.
+    This value can be changed with the --checksum-timeout option.
+
+  - The default timeout for waiting for slaves to catch up is 300 seconds.
+    This value can be changed with the --rpl-timeout option.
+
+  - The default interval to periodically verify if a slave has read all of
+    the GTIDs from the master is 3 seconds. This value can be changed
+    with the --interval option.
+

@@ -1,0 +1,51 @@
+MySQL Utilities mysqlrplshow version 1.6.5 
+License type: GPLv2
+Usage: mysqlrplshow --master=root@localhost:3306 
+
+mysqlrplshow - show slaves attached to a master
+
+Options:
+  --version             show program's version number and exit
+  --help                display a help message and exit
+  --license             display program's license and exit
+  --master=MASTER       connection information for master server in the form:
+                        <user>[:<password>]@<host>[:<port>][:<socket>] or
+                        <login-path>[:<port>][:<socket>] or <config-
+                        path>[<[group]>].
+  -l, --show-list       print a list of the topology.
+  -f FORMAT, --format=FORMAT
+                        display the list in either grid (default), tab, csv,
+                        or vertical format
+  -r, --recurse         traverse the list of slaves to find additional
+                        master/slave connections. User this option to map a
+                        replication topology.
+  --max-depth=MAX_DEPTH
+                        limit the traversal to this depth. Valid only with the
+                        --recurse option. Valid values are non-negative
+                        integers.
+  -p, --prompt          prompt for slave user and password if different from
+                        master login.
+  -n NUM_RETRIES, --num-retries=NUM_RETRIES
+                        number of retries allowed for failed slave login
+                        attempt. Valid with --prompt only.
+  --ssl-ca=SSL_CA       path to a file that contains a list of trusted SSL
+                        CAs.
+  --ssl-cert=SSL_CERT   name of the SSL certificate file to use for
+                        establishing a secure connection.
+  --ssl-key=SSL_KEY     name of the SSL key file to use for establishing a
+                        secure connection.
+  --ssl=SSL             specifies if the server connection requires use of
+                        SSL. If an encrypted connection cannot be established,
+                        the connection attempt fails. By default 0 (SSL not
+                        required).
+  -v, --verbose         control how much information is displayed. e.g., -v =
+                        verbose, -vv = more verbose, -vvv = debug
+  -q, --quiet           turn off all messages for quiet execution.
+  --discover-slaves-login=DISCOVER
+                        at startup, query master for all registered slaves and
+                        use the user name and password specified to connect.
+                        Supply the user and password in the form
+                        <user>[:<password>] or <login-path>. For example,
+                        --discover-slaves-login=joe:secret will use 'joe' as
+                        the user and 'secret' as the password for each
+                        discovered slave.
